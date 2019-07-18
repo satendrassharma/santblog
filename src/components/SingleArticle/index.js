@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Article from "./Article";
 import Loading from "../Loading";
+import Comments from "../Comments";
 export default class SingleArticle extends Component {
   state = {
     article: {},
@@ -29,6 +30,7 @@ export default class SingleArticle extends Component {
 
   render() {
     const { loading } = this.state;
+    // console.log(document.location);
     return (
       <>
         {loading && (
@@ -36,7 +38,15 @@ export default class SingleArticle extends Component {
             <Loading />
           </div>
         )}
-        {!loading && <Article article={this.state.article} />}
+        {!loading && (
+          <>
+            <Article article={this.state.article} />
+            <Comments
+              article={this.state.article}
+              url={document.location.href}
+            />
+          </>
+        )}
       </>
     );
   }

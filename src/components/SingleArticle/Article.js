@@ -50,14 +50,6 @@ export default function Article({ article }) {
             <div className="row"> {renderHtml(article.content)}</div>
           </div>
         </div>
-
-        <div className="section bt-1 bg-grey">
-          <div className="container">
-            <div className="row text-center">
-              <div className="text-center p-5">COMMENTS HERE.</div>
-            </div>
-          </div>
-        </div>
       </main>
     </div>
   );
