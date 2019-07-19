@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 export default function Article({ article }) {
   return (
@@ -29,3 +30,14 @@ export default function Article({ article }) {
     </article>
   );
 }
+
+Article.propTypes = {
+  article: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    category: PropTypes.shape({
+      name: PropTypes.string.isRequired
+    }).isRequired,
+    created_at: PropTypes.string.isRequired
+  }).isRequired
+};

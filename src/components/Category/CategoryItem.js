@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 export default function CategoryItem({ category }) {
   return (
@@ -13,3 +14,10 @@ export default function CategoryItem({ category }) {
     </Link>
   );
 }
+
+CategoryItem.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired
+  })
+};

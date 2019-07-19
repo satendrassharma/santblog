@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import LoginForm from "./LoginForm";
 export default class Login extends Component {
   state = {
@@ -36,3 +36,8 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  setAuthUser: PropTypes.func.isRequired
+};

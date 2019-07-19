@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import renderHtml from "react-render-html";
 export default function Article({ article }) {
   // console.log(article)
@@ -54,3 +55,14 @@ export default function Article({ article }) {
     </div>
   );
 }
+
+Article.propTypes = {
+  article: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    category: PropTypes.shape({
+      name: PropTypes.string.isRequired
+    }).isRequired,
+    created_at: PropTypes.string.isRequired
+  }).isRequired
+};

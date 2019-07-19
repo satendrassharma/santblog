@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 export default function LoginForm({
   handleSubmit,
@@ -8,7 +9,7 @@ export default function LoginForm({
 }) {
   return (
     <div
-      class="mh-fullscreen bg-img center-vh p-20"
+      className="mh-fullscreen bg-img center-vh p-20"
       style={{
         backgroundImage: `url(${process.env.PUBLIC_URL}/assets/img/bg-girl.jpg)`
       }}
@@ -45,20 +46,7 @@ export default function LoginForm({
               <span className="text-danger">{errors.password}</span>
             )}
           </div>
-          {/* <div className="form-group flexbox py-10">
-            <label className="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                defaultChecked
-              />
-              <span className="custom-control-indicator" />
-              <span className="custom-control-description">Remember me</span>
-            </label>
-            <a className="text-muted hover-primary fs-13" href="#">
-              Forgot password?
-            </a>
-          </div> */}
+
           <div className="form-group">
             <button
               className="btn btn-bold btn-block btn-primary"
@@ -77,3 +65,9 @@ export default function LoginForm({
     </div>
   );
 }
+
+LoginForm.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.objectOf(PropTypes.string).isRequired
+};

@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 export default function RegisterForm({
   handleInputChange,
   handleSubmit,
@@ -8,7 +10,7 @@ export default function RegisterForm({
 }) {
   return (
     <div
-      class="mh-fullscreen bg-img center-vh p-20"
+      className="mh-fullscreen bg-img center-vh p-20"
       style={{
         backgroundImage: `url(${process.env.PUBLIC_URL}/assets/img/bg-girl.jpg)`
       }}
@@ -82,3 +84,10 @@ export default function RegisterForm({
     </div>
   );
 }
+
+RegisterForm.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.objectOf(PropTypes.string).isRequired,
+  loading: PropTypes.bool.isRequired
+};

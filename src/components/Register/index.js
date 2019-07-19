@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RegisterForm from "./RegisterForm";
-import { validateAll } from "indicative";
-import apiUrl from "../../config";
+
 export default class Register extends Component {
   state = {
     name: "",
@@ -42,3 +42,8 @@ export default class Register extends Component {
     );
   }
 }
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  setAuthUser: PropTypes.func.isRequired
+};

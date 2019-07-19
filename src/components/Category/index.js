@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import CategoryItem from "./CategoryItem";
 import Banner from "../Banner";
 export default class Category extends Component {
@@ -32,3 +33,7 @@ export default class Category extends Component {
     );
   }
 }
+
+Category.propTypes = {
+  getArticleCategories: PropTypes.func.isRequired
+};

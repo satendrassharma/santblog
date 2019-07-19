@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import CreateArticleForm from "./CreateArticleForm";
 import draftToHtml from "draftjs-to-html";
 import {
@@ -139,3 +140,37 @@ export default class CreateArticle extends Component {
     );
   }
 }
+
+CreateArticle.propTypes = {
+  getArticleCategories: PropTypes.func.isRequired,
+  createArticle: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  updateArticle: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string
+    }).isRequired
+  }).isRequired,
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      category: PropTypes.shape({
+        name: PropTypes.string.isRequired
+      }).isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  ),
+  notyService: PropTypes.shape({
+    success: PropTypes.func.isRequired,
+    error: PropTypes.func.isRequired
+  }).isRequired
+};
+
+CreateArticle.defaultProps = {
+  updateArticle: () => {},
+  articles: []
+};

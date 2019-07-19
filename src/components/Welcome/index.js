@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Welcomep from "./Welcomep";
+import PropTypes from "prop-types";
 export default class Welcome extends Component {
   state = {
     articles: {},
@@ -26,8 +27,12 @@ export default class Welcome extends Component {
         nextUrl={articles.next_page_url}
         prevUrl={articles.prev_page_url}
         handlePagination={this.handlePagination}
-        loading={this.state.loading}
+        loading={loading}
       />
     );
   }
 }
+
+Welcome.propTypes = {
+  getArticles: PropTypes.func.isRequired
+};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import Navbar from "../Navbar";
 import Welcome from "../Welcome";
 import Login from "../Login";
@@ -172,3 +172,15 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  authServices: PropTypes.objectOf(PropTypes.func).isRequired,
+  articlesService: PropTypes.objectOf(PropTypes.func).isRequired,
+  notyService: PropTypes.objectOf(PropTypes.func).isRequired
+};

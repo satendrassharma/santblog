@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Banner from "../Banner";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+// import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 export default function CreateArticleForm({
@@ -70,11 +71,11 @@ export default function CreateArticleForm({
                     <div className="form-group col-12 col-md-6">
                       <select
                         name="category"
-                        id
                         className="form-control form-control-lg"
                         onChange={handleInputChange}
-                        value={category}
+                        value={category || ""}
                       >
+                        <option value>Select category</option>
                         {categories &&
                           categories.map(category => (
                             <option key={category.id} value={category.id}>
@@ -89,7 +90,6 @@ export default function CreateArticleForm({
                       editorState={content}
                       onEditorStateChange={handleEditorState}
                     />
-                    
                   </div>
                   <div className="text-center">
                     <button
@@ -97,8 +97,11 @@ export default function CreateArticleForm({
                       type="submit"
                       disabled={submitting}
                     >
-                      {submitting ? "loading" : editing ? "Update article" : "create article"}
-                     
+                      {submitting
+                        ? "loading"
+                        : editing
+                        ? "Update article"
+                        : "create article"}
                     </button>
                   </div>
                 </form>
@@ -110,3 +113,33 @@ export default function CreateArticleForm({
     </div>
   );
 }
+
+CreateArticleForm.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.arrayOf(
+    PropTypes.shape({
+      message: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  editing: PropTypes.bool.isRequired,
+  article: PropTypes.shape({
+    title: PropTypes.string.isRequired
+  }),
+  title: PropTypes.string.isRequired,
+  content: PropTypes.objectOf(PropTypes.any).isRequired,
+  category: PropTypes.number,
+  updateArticle: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
+};
+
+CreateArticleForm.defaultProps = {
+  article: null,
+  category: null
+};

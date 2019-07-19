@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 import Banner from "../Banner";
 import Article from "../Article";
-import Loading from '../Loading'
+import Loading from "../Loading";
 export default function Articles({
   articles,
   nextUrl,
@@ -22,8 +23,6 @@ export default function Articles({
       {loading && <Loading />}
       {!loading && (
         <>
-          
-
           <main className="main-content bg-gray">
             <div className="row">
               <div className="col-12 col-lg-6 offset-lg-3">
@@ -72,3 +71,22 @@ export default function Articles({
     </>
   );
 }
+
+Articles.propTypes = {
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired
+    })
+  ),
+  handlePagination: PropTypes.func.isRequired,
+  nextUrl: PropTypes.string,
+  prevUrl: PropTypes.string,
+  deleteArticle: PropTypes.func.isRequired,
+  editArticle: PropTypes.func.isRequired
+};
+
+Articles.defaultProps = {
+  articles: [],
+  nextUrl: null,
+  prevUrl: null
+};

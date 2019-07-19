@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Article from "./Article";
 import Loading from "../Loading";
 import Comments from "../Comments";
@@ -51,3 +52,22 @@ export default class SingleArticle extends Component {
     );
   }
 }
+
+SingleArticle.propTypes = {
+  getArticle: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired,
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      category: PropTypes.shape({
+        name: PropTypes.string.isRequired
+      }).isRequired,
+      created_at: PropTypes.string.isRequired
+    })
+  ).isRequired
+};

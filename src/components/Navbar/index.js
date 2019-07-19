@@ -1,24 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 export default function Navbar({ authUser, removeAuthUser }) {
   return (
     <nav className="topbar topbar-inverse topbar-expand-md topbar-sticky">
       <div className="container">
         <div className="topbar-left">
-          <button className="topbar-toggler">☰</button>
+          <button
+            className="topbar-toggler"
+            style={{ marginTop: "2px", fontSize: "1.5rem" }}
+          >
+            ☰
+          </button>
           <Link className="topbar-brand" to="/">
             <h2 className="logo-default text-dark">SANTBLOG</h2>
             <h2 className="logo-inverse text-white">SANTBLOG</h2>
-            {/* <img
-              className="logo-default"
-              src={`${process.env.PUBLIC_URL}/assets/img/slogo.png`}
-              alt="logo"
-            />
-            <img
-              className="logo-inverse"
-              src={`${process.env.PUBLIC_URL}/assets/img/slogo.png`}
-              alt="logo"
-            /> */}
           </Link>
         </div>
         <div className="topbar-right">
@@ -78,3 +74,15 @@ export default function Navbar({ authUser, removeAuthUser }) {
     </nav>
   );
 }
+Navbar.propTypes = {
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      name: PropTypes.string
+    }).isRequired
+  }),
+  removeAuthUser: PropTypes.func.isRequired
+};
+
+Navbar.defaultProps = {
+  authUser: null
+};

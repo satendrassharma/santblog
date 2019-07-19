@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 import Banner from "../Banner";
 import Article from "../Article";
@@ -56,3 +57,23 @@ export default function CategoryArticle({
     </>
   );
 }
+CategoryArticle.propTypes = {
+  category: PropTypes.shape({
+    name: PropTypes.string.isRequired
+  }),
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired
+    })
+  ),
+  nextUrl: PropTypes.string,
+  prevUrl: PropTypes.string,
+  handlePagination: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
+};
+
+CategoryArticle.defaultProps = {
+  articles: [],
+  nextUrl: null,
+  prevUrl: null
+};
